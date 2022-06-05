@@ -9,6 +9,8 @@
 
 // comparison about class component and hooks functional component
 // Class component
+
+/* 
 import { Component } from 'react'
 class App extends Component {
   state = { contador : 0 }
@@ -23,23 +25,36 @@ class App extends Component {
       </div>
     )
   }
-}
+} 
+*/
 
 
 // Hook functional component
 
-/* 
+
+
 import { useState } from "react"
 
+// Custom Hook
+
+const useContador = (inicial) => {
+  const [ contador, setContador ] = useState(inicial)
+  const incrementar = () => {
+    setContador(contador + 1)
+  }
+
+  return [contador, incrementar]
+} 
+
+
 const App = () => {
-  const [ contador, setContador ] = useState(0)
-  return (
+  const [contador, incrementar] = useContador(0)
+    return (
     <div>
       Contador: {contador}
-      <button onClick={() => setContador(contador + 1)}>Incrementar</button>
+      <button onClick={incrementar}>Incrementar</button>
     </div>
   )
 }
-*/
 
 export default App 
