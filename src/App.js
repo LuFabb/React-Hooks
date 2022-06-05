@@ -1,6 +1,6 @@
 // useEffect
 
-import { useState, useEffect } from 'react'
+import { Component, useState, useEffect } from 'react'
 
 const useContador = (inicial) => {
   const [ contador, setContador ] = useState(inicial)
@@ -10,7 +10,7 @@ const useContador = (inicial) => {
 
   return [contador, incrementar]
 } 
-
+/* 
 const Interval = ({ contador }) => {
   useEffect(() => {
     const i = setInterval(() => console.log(contador), 1000)
@@ -19,8 +19,23 @@ const Interval = ({ contador }) => {
   return (
     <p>Intervalo</p>
   )
-}
+} */
 
+class Interval extends Component {
+  intervalo = ''
+  componentDidMount() {
+    this.intervalo = setInterval(() => console.log(this.props.contador), 1000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalo)
+  }
+
+  render() {
+    return(
+      <p>Intervalo</p>
+    )
+  }
+}
 
 const App = () => {
   const [contador, incrementar] = useContador(0)
