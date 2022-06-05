@@ -1,30 +1,22 @@
-//intro to functional components
+// useState
 
+// hooks rules: 
+// they are not called in loop, or while 
+// always at the highest level of the component
+// they are only called in 2 parts:
+// React component and Custo hooks
+// when we create a custom hook it always has to start with 'use and than the other part.
 
-//impure function
-//functions that always change the return value, whenever we call it
-const impure = () => new Date().toLocaleString()
+import { useState } from "react"
 
-console.log(impure())
-
-
-//a pure function is a function that never changes the return value
-//in React functions are always pure functions!
-
-const Mycomponent = ({myProp}) => {
+const App = () => {
+  const [ contador, setContador ] = useState(0)
   return (
     <div>
-      Name: {myProp}
+      Contador: {contador}
+      <button onClick={() => setContador(contador + 1)}>Incrementar</button>
     </div>
   )
 }
-
-
-const App = () => {
-  return(
-    <Mycomponent myProp={'Luca'}/>
-  )
-}
-
 
 export default App
